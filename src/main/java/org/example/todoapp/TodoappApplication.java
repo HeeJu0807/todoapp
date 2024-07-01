@@ -17,20 +17,21 @@ public class TodoappApplication {
         SpringApplication.run(TodoappApplication.class, args);
     }
 
-//    @Value("${DB_USERNAME}")
-//    private String dbUsername;
-//    @Value("${DB_PASSWORD}")
-//    private String dbPassword;
-//    @Bean
-//    public CommandLineRunner run(){
-//        return args -> {
-//            System.out.println("DB_USERNAME:::"+dbUsername);
-//            System.out.println("DB_PASSWORD:::"+dbPassword);
-//        };
-//    }
+//	@Value("${DB_USERNAME}")
+//	private String dbUsername;
+//	@Value("${DB_PASSWORD}")
+//	private String dbPassword;
+//	@Bean
+//	public CommandLineRunner run(){
+//		return args -> {
+//			System.out.println("DB_USERNAME:::"+dbUsername);
+//			System.out.println("DB_PASSWORD:::"+dbPassword);
+//		};
+//	}
 
     @Bean
     public CommandLineRunner run(){
+
         return args -> {
             String region = "ap-northeast-2";
 
@@ -38,11 +39,9 @@ public class TodoappApplication {
                     .region(Region.of(region))
                     .build();
 
-            System.out.println("todo_DB_USERNAME:::" +getParameterValue(ssmClient,"/todo/config/DB_USERNAME"));
-            System.out.println("todo_DB_PASSWORD:::" +getParameterValue(ssmClient,"/todo/config/DB_PASSWORD"));
 
-
-
+            System.out.println("todo_DB_USERNAME:::"+getParameterValue(ssmClient,"/todo/config/DB_USERNAME"));
+            System.out.println("todo_DB_PASSWORD:::"+getParameterValue(ssmClient,"/todo/config/DB_PASSWORD"));
         };
     }
 
